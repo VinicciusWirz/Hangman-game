@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import "./assets/css/reset.css"
+import { GlobalStyle, Layout } from './assets/css/styles';
+import palavras from './palavras';
+import Jogo from "./components/Jogo";
+import Letras from "./components/Letras";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <GlobalStyle />
+    <Layout>
+      <Jogo palavras={palavras}/>
+      <Letras/>
+    </Layout>
+    </>
   );
 }
 
