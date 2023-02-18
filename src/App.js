@@ -8,25 +8,32 @@ import { useState } from "react";
 
 function App() {
   const [errors, setErrors] = useState(0);
-  const [mainWord, setMainWord]  = useState([]);
-  const [chosenWord, setChosenWord] = useState('');
-  
-  function sortWord(){
-    const selectedWordIndex = Math.floor(Math.random()*palavras.length);
-    const selectedWord = palavras[selectedWordIndex];
+  const [mainWord, setMainWord] = useState([]);
+  const [choosenLetters, setChoosenLetters] = useState([]);
+  let selectedWord = '';
+
+
+  function sortWord() {
+    const selectedWordIndex = Math.floor(Math.random() * palavras.length);
+    selectedWord = palavras[selectedWordIndex];
     const selectedWordArray = Array.from(selectedWord);
     setMainWord(selectedWordArray);
+    setChoosenLetters([]);
     setErrors(0);
-    setChosenWord(selectedWord);
   }
-  
+
+  function pickingALetter(letter) {
+    setChoosenLetters([...choosenLetters, letter]);
+    !mainWord.includes(letter) && setErrors(errors + 1);
+  }
+
   return (
     <>
-    <GlobalStyle />
-    <Layout>
-      <Jogo mainWord={mainWord} onClick={sortWord} errors={errors}/>
-      <Letras startGame={mainWord.length !== 0}/>
-    </Layout>
+      <GlobalStyle />
+      <Layout>
+        <Jogo mainWord={mainWord} onClick={sortWord} errors={errors} choosenLetters={choosenLetters} />
+        <Letras startGame={mainWord.length !== 0} onClick={pickingALetter} choosenLetters={choosenLetters} />
+      </Layout>
     </>
   );
 }

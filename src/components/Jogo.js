@@ -23,20 +23,26 @@ export default function Jogo(props) {
         <Game>
             <img src={imgs[props.errors]} />
             <div>
-              <button onClick={props.onClick}>Escolher Palavra</button>
-              <p>
-                {props.mainWord.length === 0 ? <Word letter={0}/> : props.mainWord.map((l, index) => <Word key={index} letter={l}/>)}
-            </p>
+                <button onClick={props.onClick}>Escolher Palavra</button>
+                <p>
+                    {props.mainWord.length === 0 ? <Word letter={0} /> : props.mainWord.map((l, index) => <Word key={index} letter={l} choosenLetters={props.choosenLetters} />)}
+                </p>
             </div>
         </Game>
     )
 }
 
-function Word(props){
-    if(props.letter === 0){
+function Word(props) {
+    if (props.letter === 0) {
         return;
     }
-    return(
+    if (props.choosenLetters.includes(props.letter)) {
+        return (
+            <span>{props.letter}</span>
+        )
+    } else {
+        return (
             <span>_</span>
-    )
+        )
+    }
 }

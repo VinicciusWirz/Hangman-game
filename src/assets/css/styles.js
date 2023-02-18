@@ -71,10 +71,14 @@ flex-wrap: wrap;
 width: 65vw;
 max-width: 664px;
 margin-top:70px;
+
+`;
+
+export const Btns = styled.div`
 button{
     width: 40px;
     height: 40px;
-    background: ${(props) => !props.startGame ? '#9FAAB5' : '#E1ECF4'};
+    background: ${(props) => props.isDisabled ? '#9FAAB5' : '#E1ECF4'};
     border: 1px solid #7AA7C7;
     border-radius: 3px;
     font-style: normal;
@@ -89,4 +93,4 @@ button{
     margin-right: 10px;
     margin-bottom: 11px;
 }
-`;
+`
