@@ -38,7 +38,30 @@ button{
     text-align: center;
     color: #FFFFFF;
     margin-top: 30px;
-    margin-right: 15px
+    
+}
+div{
+    padding-right: 15px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items: flex-end;
+    height:100%;
+    p{
+        font-family: 'Noto Sans', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 50px;
+        line-height: 68px;
+        display: flex;
+        justify-content:flex-end;
+        text-align: center;
+        color: #000000;
+        letter-spacing: 0.2em;
+        span{
+
+        }
+    }
 }
 `;
 
@@ -51,7 +74,7 @@ margin-top:70px;
 button{
     width: 40px;
     height: 40px;
-    background: #9FAAB5;
+    background: ${(props) => !props.startGame ? '#9FAAB5' : '#E1ECF4'};
     border: 1px solid #7AA7C7;
     border-radius: 3px;
     font-style: normal;

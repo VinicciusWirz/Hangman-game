@@ -27,10 +27,10 @@ const alfabeto = ["a",
 "y",
 "z"]
 
-export default function Letras() {
+export default function Letras(props) {
     return (
-        <Choices>
-            {alfabeto.map((l) => <button key={l} disabled={true}>{l.toUpperCase()}</button>)}
+        <Choices startGame={props.startGame}>
+            {alfabeto.map((l) => <button key={l} disabled={!props.startGame}>{l.toUpperCase()}</button>)}
         </Choices>
     )
 }
