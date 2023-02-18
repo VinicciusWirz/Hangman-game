@@ -30,9 +30,9 @@ function App() {
     setChoosenLetters([...choosenLetters, letter]);
     if (mainWord.includes(letter)) {
       const arrayRight = rightLetters;
-      mainWord.forEach((c,index) => c === letter && (arrayRight[index] = letter));
+      mainWord.forEach((c, index) => c === letter && (arrayRight[index] = letter));
       setRightLetters(arrayRight)
-      if (arrayRight.join('') === mainWord.join('')){
+      if (arrayRight.join('') === mainWord.join('')) {
         setgameControl(true);
         setGameResult('win')
       }

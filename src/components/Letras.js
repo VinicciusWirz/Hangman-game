@@ -34,10 +34,12 @@ export default function Letras(props) {
         const isDisabled = !props.startGame || props.choosenLetters.includes(props.letters);
 
         return (
-            <Btns isDisabled={isDisabled || gameControl}
-            disabled={isDisabled || gameControl}
-            onClick={() => props.onClick(props.letters)}>
-                    {props.letters.toUpperCase()}
+            <Btns
+                isDisabled={isDisabled || gameControl}
+                disabled={isDisabled || gameControl}
+                onClick={() => props.onClick(props.letters)}
+                data-test="letter">
+                {props.letters.toUpperCase()}
             </Btns>
         )
     }

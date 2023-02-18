@@ -20,17 +20,17 @@ const imgs = [
 export default function Jogo(props) {
     return (
         <Game>
-            <img src={imgs[props.errors]} />
+            <img src={imgs[props.errors]} data-test="game-image" />
             <div>
-                <button onClick={props.onClick}>Escolher Palavra</button>
-                <p>
+                <button onClick={props.onClick} data-test="choose-word">Escolher Palavra</button>
+                <p data-test="word">
                     {props.mainWord.length === 0 ? <Word letter={0} /> : props.mainWord.map((l, index) => (
-                    <Word 
-                    key={index} 
-                    letter={l} 
-                    choosenLetters={props.choosenLetters} 
-                    gameResult={props.gameResult}
-                    />
+                        <Word
+                            key={index}
+                            letter={l}
+                            choosenLetters={props.choosenLetters}
+                            gameResult={props.gameResult}
+                        />
                     ))}
                 </p>
             </div>
@@ -38,11 +38,11 @@ export default function Jogo(props) {
     )
 }
 
-function Word({letter, choosenLetters, gameResult}) {
+function Word({ letter, choosenLetters, gameResult }) {
     if (letter === 0) {
         return;
     }
-    if(gameResult !== 'ongoing'){
+    if (gameResult !== 'ongoing') {
         return (
             <WordResult gameResult={gameResult}>{letter}</WordResult>
         )
