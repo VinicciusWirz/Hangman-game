@@ -29,16 +29,15 @@ const alfabeto = ["a",
     "z"]
 
 export default function Letras(props) {
+    const gameControl = props.gameControl;
     function Buttons(props) {
         const isDisabled = !props.startGame || props.choosenLetters.includes(props.letters);
 
         return (
-            <Btns isDisabled={isDisabled}>
-                <button
-                    disabled={isDisabled}
-                    onClick={() => props.onClick(props.letters)}>
+            <Btns isDisabled={isDisabled || gameControl}
+            disabled={isDisabled || gameControl}
+            onClick={() => props.onClick(props.letters)}>
                     {props.letters.toUpperCase()}
-                </button>
             </Btns>
         )
     }

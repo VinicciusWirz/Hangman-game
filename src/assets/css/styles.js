@@ -74,8 +74,7 @@ margin-top:70px;
 
 `;
 
-export const Btns = styled.div`
-button{
+export const Btns = styled.button`
     width: 40px;
     height: 40px;
     background: ${(props) => props.isDisabled ? '#9FAAB5' : '#E1ECF4'};
@@ -92,5 +91,8 @@ button{
     color: #798A9F;
     margin-right: 10px;
     margin-bottom: 11px;
-}
+`
+
+export const WordResult = styled.span`
+color: ${(props) => props.gameResult === 'lose' ? 'red' : 'green'};
 `
