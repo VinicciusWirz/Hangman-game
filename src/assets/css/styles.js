@@ -70,14 +70,65 @@ display: flex;
 flex-wrap: wrap;
 width: 65vw;
 max-width: 664px;
-margin-top:70px;
-
+margin-top: 70px;
 `;
+
+export const RandomGuess = styled.div`
+    display: flex;
+    width: 61vw;
+    max-width: 664px;
+    margin-top: 46px;
+    margin-right: 20px;
+    align-items: center;
+    input{
+        width: 353px;
+        height: 40px;
+        background: #FFFFFF;
+        border: 1px solid #CCCCCC;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+        border-radius: 3px;
+        margin: 0 15px 0 12px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        padding: 0 10px;
+    }
+    button{
+        width: 100px;
+        height: 40px;
+        background: #E1ECF4;
+        border: 1px solid #7AA7C7;
+        border-radius: 3px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 19px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        color: #3C76A1;
+    }
+    p{
+        font-family: 'Roboto', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 23px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #000000;
+    }
+`
 
 export const Btns = styled.button`
     width: 40px;
     height: 40px;
-    background: ${(props) => props.isDisabled ? '#9FAAB5' : '#E1ECF4'};
+    background: ${(props) => props.disabled ? '#9FAAB5' : '#E1ECF4'};
     border: 1px solid #7AA7C7;
     border-radius: 3px;
     font-style: normal;
@@ -89,8 +140,8 @@ export const Btns = styled.button`
     justify-content: center;
     text-align: center;
     color: #798A9F;
-    margin-right: 10px;
-    margin-bottom: 11px;
+    margin: 0 5px 11px;
+    transition: background 0.2s ease;
 `
 
 export const WordResult = styled.span`

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Btns, Choices } from "../assets/css/styles"
+import { Btns, Choices, RandomGuess } from "../assets/css/styles"
 
 const alfabeto = ["a",
     "b",
@@ -29,29 +29,42 @@ const alfabeto = ["a",
     "z"]
 
 export default function Letras(props) {
-    const gameControl = props.gameControl;
-    function Buttons(props) {
-        const isDisabled = !props.startGame || props.choosenLetters.includes(props.letters);
+    return (
+        <>
+            <Choices startGame={!props.startGame}>
+                {alfabeto.map((l) => <Buttons letters={l}
+                    key={l}
+                    startGame={props.startGame}
+                    choosenLetters={props.choosenLetters}
+                    onClick={props.onClick}
+                    gameControl={props.gameControl}
+                />)}
+            </Choices>
+            <RandomGuess>
+                <p>Já sei a palavra!</p>
+                <input onChange={(e) => props.setInputValue(e.target.value)}
+                    value={props.inputValue}
+                    disabled={props.gameControl || !props.startGame}
+                    data-test="guess-input" />
+                <button onClick={() => props.guess(props.inputValue)}
+                    disabled={!props.inputValue}
+                    data-test="guess-button">
+                    Chutar
+                </button>
+            </RandomGuess>
+        </>
+    )
+}
 
-        return (
-            <Btns
-                isDisabled={isDisabled || gameControl}
-                disabled={isDisabled || gameControl}
-                onClick={() => props.onClick(props.letters)}
-                data-test="letter">
-                {props.letters.toUpperCase()}
-            </Btns>
-        )
-    }
+function Buttons(props) {
+    const isDisabled = !props.startGame || props.choosenLetters.includes(props.letters);
 
     return (
-        <Choices startGame={!props.startGame}>
-            {alfabeto.map((l) => <Buttons letters={l}
-                key={l}
-                startGame={props.startGame}
-                choosenLetters={props.choosenLetters}
-                onClick={props.onClick}
-            />)}
-        </Choices>
+        <Btns
+            disabled={isDisabled || props.gameControl}
+            onClick={() => props.onClick(props.letters)}
+            data-test="letter">
+            {props.letters.toUpperCase()}
+        </Btns>
     )
 }

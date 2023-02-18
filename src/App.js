@@ -10,9 +10,10 @@ function App() {
   const [errors, setErrors] = useState(0);
   const [mainWord, setMainWord] = useState([]);
   const [choosenLetters, setChoosenLetters] = useState([]);
-  const [gameControl, setgameControl] = useState(false);
-  const [gameResult, setGameResult] = useState('ongoing')
+  const [gameControl, setGameControl] = useState(false);
+  const [gameResult, setGameResult] = useState('ongoing');
   const [rightLetters, setRightLetters] = useState([]);
+  const [inputValue, setInputValue] = useState('');
 
   function sortWord() {
     const selectedWordIndex = Math.floor(Math.random() * palavras.length);
@@ -21,9 +22,25 @@ function App() {
     setMainWord(selectedWordArray);
     setChoosenLetters([]);
     setErrors(0);
-    setgameControl(false);
+    setGameControl(false);
     setGameResult('ongoing');
     setRightLetters(Array(selectedWordArray.length));
+    setInputValue('');
+  }
+
+  function guess(input) {
+    if (input === mainWord.join('')) {
+      setGameControl(true);
+      setGameResult('win');
+    } else {
+      setGameControl(true);
+      setGameResult('lose');
+      setErrors(6);
+    }
+  }
+
+  function saveInput(l) {
+    setInputValue(l);
   }
 
   function pickingALetter(letter) {
@@ -33,22 +50,33 @@ function App() {
       mainWord.forEach((c, index) => c === letter && (arrayRight[index] = letter));
       setRightLetters(arrayRight)
       if (arrayRight.join('') === mainWord.join('')) {
-        setgameControl(true);
-        setGameResult('win')
+        setGameControl(true);
+        setGameResult('win');
       }
     } else {
       const errorCount = errors + 1;
       setErrors(errorCount)
       if (errorCount === 6) {
-        setgameControl(true);
-        setGameResult('lose')
+        setGameControl(true);
+        setGameResult('lose');
       }
     }
   }
   return (
     <Layout>
-      <Jogo mainWord={mainWord} onClick={sortWord} errors={errors} choosenLetters={choosenLetters} gameResult={gameResult} />
-      <Letras startGame={mainWord.length !== 0} onClick={pickingALetter} choosenLetters={choosenLetters} gameControl={gameControl} />
+      <Jogo mainWord={mainWord}
+        onClick={sortWord}
+        errors={errors}
+        choosenLetters={choosenLetters}
+        gameResult={gameResult} />
+      <Letras
+        startGame={mainWord.length !== 0}
+        onClick={pickingALetter}
+        choosenLetters={choosenLetters}
+        gameControl={gameControl}
+        guess={guess}
+        inputValue={inputValue}
+        setInputValue={saveInput} />
     </Layout>
   );
 }
