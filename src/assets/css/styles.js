@@ -24,6 +24,7 @@ export const Game = styled.div`
 display: flex;
 justify-content: space-between;
 width: 91vw;
+max-width: 934px;
 button{
     width: 200px;
     height: 60px;
@@ -71,6 +72,7 @@ flex-wrap: wrap;
 width: 65vw;
 max-width: 664px;
 margin-top: 70px;
+justify-content: center;
 `;
 
 export const RandomGuess = styled.div`
@@ -78,8 +80,9 @@ export const RandomGuess = styled.div`
     width: 61vw;
     max-width: 664px;
     margin-top: 46px;
-    margin-right: 20px;
+    
     align-items: center;
+    justify-content: center;
     input{
         width: 353px;
         height: 40px;

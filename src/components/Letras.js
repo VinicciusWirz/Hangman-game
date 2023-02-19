@@ -26,7 +26,7 @@ const alfabeto = ["a",
     "w",
     "x",
     "y",
-    "z"]
+    "z"];
 
 export default function Letras(props) {
     return (
@@ -37,14 +37,14 @@ export default function Letras(props) {
                     startGame={props.startGame}
                     choosenLetters={props.choosenLetters}
                     onClick={props.onClick}
-                    gameControl={props.gameControl}
+                    gameResult={props.gameResult}
                 />)}
             </Choices>
             <RandomGuess>
                 <p>Já sei a palavra!</p>
                 <input onChange={(e) => props.setInputValue(e.target.value)}
                     value={props.inputValue}
-                    disabled={props.gameControl || !props.startGame}
+                    disabled={(props.gameResult !== 'ongoing') || !props.startGame}
                     data-test="guess-input" />
                 <button onClick={() => props.guess(props.inputValue)}
                     disabled={!props.inputValue}
@@ -53,7 +53,7 @@ export default function Letras(props) {
                 </button>
             </RandomGuess>
         </>
-    )
+    );
 }
 
 function Buttons(props) {
@@ -61,10 +61,10 @@ function Buttons(props) {
 
     return (
         <Btns
-            disabled={isDisabled || props.gameControl}
+            disabled={isDisabled || (props.gameResult !== 'ongoing')}
             onClick={() => props.onClick(props.letters)}
             data-test="letter">
             {props.letters.toUpperCase()}
         </Btns>
-    )
+    );
 }

@@ -24,12 +24,14 @@ export default function Jogo(props) {
             <div>
                 <button onClick={props.onClick} data-test="choose-word">Escolher Palavra</button>
                 <p data-test="word">
-                    {props.mainWord.length === 0 ? <Word letter={0} /> : props.mainWord.map((l, index) => (
+                    {props.gameResult && props.rightLetters.map((l, index) => (
                         <Word
                             key={index}
+                            index={index}
                             letter={l}
-                            choosenLetters={props.choosenLetters}
                             gameResult={props.gameResult}
+                            rightLetters={props.rightLetters}
+                            mainWord={props.mainWord}
                         />
                     ))}
                 </p>
@@ -38,22 +40,13 @@ export default function Jogo(props) {
     )
 }
 
-function Word({ letter, choosenLetters, gameResult }) {
-    if (letter === 0) {
-        return;
-    }
-    if (gameResult !== 'ongoing') {
-        return (
-            <WordResult gameResult={gameResult}>{letter}</WordResult>
-        )
-    }
-    if (choosenLetters.includes(letter) && gameResult === 'ongoing') {
-        return (
-            <span>{letter}</span>
-        )
+function Word({ letter, gameResult, mainWord, index }) {
+    if (gameResult === 'ongoing') {
+        return <span>{letter}</span>
+
     } else {
         return (
-            <span>_</span>
+            <WordResult gameResult={gameResult}>{mainWord[index]}</WordResult>
         )
     }
 }
